@@ -1,0 +1,13 @@
+WITH count_review AS (
+    SELECT rr.MEMBER_ID, mp.MEMBER_NAME, COUNT(rr.MEMBER_ID) AS cnt_review
+    FROM REST_REVIEW rr JOIN MEMBER_PROFILE mp ON rr.MEMBER_ID = mp.MEMBER_ID
+    GROUP BY rr.MEMBER_ID
+),
+rank_reivew AS (
+    SELECT MEMBER_NAME, MEMBER_ID, cnt_review, DENSE_RANK() OVER (ORDER BY cnt_review DESC) review_rank
+    FROM count_review
+)
+SELECT rw.MEMBER_NAME, rw2.REVIEW_TEXT, LEFT(rw2.REVIEW_DATE,10) AS REVIEW_DATE 
+FROM rank_reivew rw JOIN REST_REVIEW rw2 ON rw.MEMBER_ID = rw2.MEMBER_ID
+WHERE rw.review_rank = 1
+ORDER BY 3,2
