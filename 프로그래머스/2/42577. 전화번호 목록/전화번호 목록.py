@@ -1,4 +1,4 @@
-# 첫 시도 -> 정확도 66.7/100.0
+# 첫 시도 -> 정확도 66.7/100.0 -> 
 # def solution(phone_book):
 #     phone_book_dict = {}
     
@@ -10,7 +10,7 @@
 
 #     sub_list = []
 #     for key in phone_book_dict:
-#         sub = [k for k in phone_book_dict.keys() if key in k]
+#         sub = [k for k in phone_book_dict.keys() if key in k]   # 문제지점 : 접두사가 아닌 포함여부만 체크
 #         sub_list.append(sub)
     
 
@@ -32,7 +32,7 @@
 #             continue
     
 #     for key in phone_book_dict:
-#         for k in phone_book_dict.keys():
+#         for k in phone_book_dict.keys():  # 문제지점 : 이중 for문으로 복잡도 이슈
 #             if k != key :
 #                 if(k.startswith(key)):
 #                     return False
@@ -43,8 +43,7 @@
 def solution(phone_book):
     phone_book.sort()
     
-    for i in range(len(phone_book)):
-        if i <= len(phone_book) - 2:
+    for i in range(len(phone_book)-1):
             if phone_book[i+1].startswith(phone_book[i]):
                 return False
     
