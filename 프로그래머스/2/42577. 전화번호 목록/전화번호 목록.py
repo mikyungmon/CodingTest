@@ -1,4 +1,4 @@
-# 첫 시도 -> 정확도 66.7/100.0 -> 
+# 첫 시도 -> 정확도 66.7/100.0  
 # def solution(phone_book):
 #     phone_book_dict = {}
     
@@ -43,12 +43,10 @@
 def solution(phone_book):
     phone_book.sort()
     
+    # 정렬 후 바로 옆 요소랑만 비교해도 충분
     for i in range(len(phone_book)-1):
             if phone_book[i+1].startswith(phone_book[i]):
                 return False
     
     return True
-    
-    
-        
-        
+  
