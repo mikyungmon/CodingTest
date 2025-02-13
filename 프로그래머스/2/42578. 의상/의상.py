@@ -27,7 +27,7 @@ def solution(clothes):
         if clothes[i][1] not in clothes_dict.keys():
             clothes_dict[clothes[i][1]] = []
         clothes_dict[clothes[i][1]].append(clothes[i][0])
-    print('dict', clothes_dict)
+
     if len(clothes_dict.keys()) == 1:
         return len(sum(list(clothes_dict.values()),[]))
     else: 
